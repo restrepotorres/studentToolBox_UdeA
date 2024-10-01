@@ -1,0 +1,19 @@
+---
+const { text } = Astro.props;
+---
+<div class="info-card">
+    <p class="text-center text-white font-bold">{text}</p>
+</div>
+
+<style>
+    .info-card {
+        background-color: #4CAF50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>

@@ -1,7 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import InfoCard from "../components/InfoCard.astro"
 ---
 
-<Layout title="Sitios Externos" description="Usefull links">
-    
+<Layout title="Sitios Externos" description="Useful links">
+    <h1 class="text-center p-2 font-bold text-green-600">Sitios externos</h1>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+        <InfoCard text="S1" />
+        <InfoCard text="S2" />
+        <InfoCard text="S3" />
+        <InfoCard text="S4" />
+        <InfoCard text="S5" />
+        <InfoCard text="S6" />
+        <InfoCard text="S7" />
+        <InfoCard text="S8" />
+        <InfoCard text="S9" />
+        <InfoCard text="S10" />
+    </div>
 </Layout>
