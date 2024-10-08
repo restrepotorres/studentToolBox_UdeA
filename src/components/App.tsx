@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+/* import { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   Controls,
   Background,
@@ -15,8 +15,10 @@ import "reactflow/dist/style.css";
 import MyNodo from "./MyNodo";
 import axios from "axios";
 const styles = {
-  width: "80vw",
-  height: "90vh",
+  width: "75vw",
+  height: "80vh",
+  margin: "auto",
+  border: "3px solid green",
 };
 
 const initialNodes = [
@@ -93,3 +95,4 @@ function App() {
 }
 
 export default App;
+ */
