@@ -34,7 +34,7 @@ const ReactFlowMain = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   return (
-    <div className="w-lvw h-lvh m-auto border-3 border-solid border-green-500">
+    
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -44,7 +44,7 @@ const ReactFlowMain = () => {
         <Controls />
         <Background gap={12} size={1} />
       </ReactFlow>
-    </div>
+
   );
 };
 
