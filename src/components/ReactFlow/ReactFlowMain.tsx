@@ -7,11 +7,10 @@ import ReactFlow, {
   Position,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { initialNodes } from "./nodes"; // Import initial nodes
-import { initialEdges } from "./edges"; // Import initial edges
+import { initialNodes } from "./nodes";
+import { initialEdges } from "./edges";
 import axios from "axios";
 import RFNode from "./ReactFlowNode";
-import RFNode2 from "./ReactFlowNode2";
 
 interface Subject {
   id: string;
@@ -24,34 +23,12 @@ interface Subject {
   state: boolean;
 }
 
-let subjectExample: Subject = {
-  id: "1",
-  name: "Mathematics",
-  prerequisites: ["Algebra"],
-  corequisites: ["Physics"],
-  credits: 5,
-  level: 2,
-  area: "Science",
-  state: true,
-};
-
-const initialNodes2 = [
-  {
-    id: "2508120",
-    position: { x: 0, y: 200 },
-    data: { label: <RFNode2 subject={subjectExample} noHandles={true} /> },
-    sourcePosition: Position.Right,
-    targetPosition: Position.Left,
-  },
-];
-
 const ReactFlowMain: React.FC = () => {
-  //const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes2);
-
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [subjects, setSubjects] = useState<Subject[]>([]);
 
+  //el siguiente useEffect obtiene todas las materias del api
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
@@ -67,45 +44,34 @@ const ReactFlowMain: React.FC = () => {
     fetchSubjects();
   }, []);
 
+  //en este useEffect se agregan las materias traidas del api como nodos para ser renderizadas
   useEffect(() => {
     subjects.forEach((subject) => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x: 5 * subject.level + 12, y: 400 },
+          position: { x:   subject.level*85 , y: 300 },
           data: {
-            label: <RFNode2 subject={subject} noHandles={false} />,
+            label: <RFNode subject={subject} noHandles={false} />,
           },
           sourcePosition: Position.Right,
           targetPosition: Position.Left,
         })
       );
-      console.log(nodes);
     });
+    //TODO: lógica para agregar los vertices
   }, [subjects]);
 
   return (
-    <>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-      >
-        <Controls />
-        <Background gap={12} size={1} />
-      </ReactFlow>
-      <div>
-        <h1>Subjects</h1>
-        <ul>
-          {subjects.map((subject) => (
-            <li key={subject.id}>
-              {subject.name} - {subject.credits} credits
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+    >
+      <Controls />
+      <Background gap={12} size={1} />
+    </ReactFlow>
   );
 };
 
