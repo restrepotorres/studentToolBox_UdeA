@@ -32,7 +32,7 @@ const ReactFlowMain: React.FC = () => {
     const fetchSubjects = async () => {
       try {
         const response = await axios.get<Subject[]>(
-          "http://localhost:8090/toolbox/api/v1/subjectbasic/"
+          "https://toolbox-backend.onrender.com/toolbox/api/v1/subjectbasic/"
         );
         setSubjects(response.data);
       } catch (error) {
@@ -81,7 +81,6 @@ const ReactFlowMain: React.FC = () => {
       });
       //Edges id notation --> e(códigoMateriaSource)_(códigoMateriaTarget)
     });
-    //TODO: lógica para agregar los vertices
   }, [subjects]);
 
   return (
