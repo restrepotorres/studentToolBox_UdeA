@@ -1,13 +1,27 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 
-type nodoprops = { 
-  readonly nombre: string; 
-  readonly creditos: number;
-  readonly noHandles?: boolean; // Optional prop for no handles
-};
 
-function RFNode({ nombre, creditos, noHandles }: nodoprops): JSX.Element {
+interface Subject {
+  id: string;
+  name: string;
+  prerequisites: string[];
+  corequisites: string[];
+  credits: number;
+  level: number;
+  area: string;
+  state: boolean;
+}
+
+interface SubjectProps {
+  subject: Subject; 
+  noHandles: boolean;
+}
+
+const RFNode: React.FC<SubjectProps> = (
+  { subject },
+  noHandles: boolean
+) => {
   return (
     <div className="rf-node">
       {/* Conditionally render handles if noHandles is false or undefined */}
@@ -23,9 +37,9 @@ function RFNode({ nombre, creditos, noHandles }: nodoprops): JSX.Element {
       )}
 
       {/* Node content */}
-      <div onClick={() => alert(`holi esta materia se llama ${nombre}`)}>
-        <h1>{nombre}</h1>
-        {creditos > 0 && <div>creditos: {creditos}</div>}
+      <div onClick={() => alert(`holi esta materia se llama ${subject.name}`)}>
+        <h1>{subject.name}</h1>
+        {subject.credits > 0 && <div>creditos: {subject.credits}</div>}
       </div>
 
       {!noHandles && (
@@ -40,6 +54,6 @@ function RFNode({ nombre, creditos, noHandles }: nodoprops): JSX.Element {
       )}
     </div>
   );
-}
+};
 
 export default RFNode;
