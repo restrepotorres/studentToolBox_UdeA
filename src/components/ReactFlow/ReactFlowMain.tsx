@@ -8,7 +8,6 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { initialNodes } from "./nodes";
-import { initialEdges } from "./edges";
 import axios from "axios";
 import RFNode from "./ReactFlowNode";
 
@@ -23,23 +22,8 @@ interface Subject {
   state: boolean;
 }
 
-const initialEdge = [
-  //Edges id notation --> e(códigoMateriaSource)_(códigoMateriaTarget)
-  {
-    id: "e2508120-2508207",
-    source: "2508120",
-    target: "2508207",
-    type: "smoothstep",
-  },
-  {
-    id: "e2555121-2555221",
-    source: "2555121",
-    target: "2555221",
-    type: "smoothstep",
-  },
-];
 const ReactFlowMain: React.FC = () => {
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [subjects, setSubjects] = useState<Subject[]>([]);
 
