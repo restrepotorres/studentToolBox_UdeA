@@ -23,6 +23,21 @@ interface Subject {
   state: boolean;
 }
 
+const initialEdge = [
+  //Edges id notation --> e(códigoMateriaSource)_(códigoMateriaTarget)
+  {
+    id: "e2508120-2508207",
+    source: "2508120",
+    target: "2508207",
+    type: "smoothstep",
+  },
+  {
+    id: "e2555121-2555221",
+    source: "2555121",
+    target: "2555221",
+    type: "smoothstep",
+  },
+];
 const ReactFlowMain: React.FC = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -50,7 +65,7 @@ const ReactFlowMain: React.FC = () => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x:   subject.level*85 , y: 300 },
+          position: { x: subject.level * 85, y: 300 },
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
@@ -58,6 +73,29 @@ const ReactFlowMain: React.FC = () => {
           targetPosition: Position.Left,
         })
       );
+
+      subject.corequisites.forEach((corequisite) => {
+        setEdges((edgs) =>
+          edgs.concat({
+            id: `e${subject.id}_${corequisite}`,
+            source: subject.id,
+            target: corequisite,
+            type: "smoothstep",
+          })
+        );
+      });
+
+      subject.prerequisites.forEach((prerequisite) => {
+        setEdges((edgs) =>
+          edgs.concat({
+            id: `e${subject.id}_${prerequisite}`,
+            source: subject.id,
+            target: prerequisite,
+            type: "smoothstep",
+          })
+        );
+      });
+      //Edges id notation --> e(códigoMateriaSource)_(códigoMateriaTarget)
     });
     //TODO: lógica para agregar los vertices
   }, [subjects]);
