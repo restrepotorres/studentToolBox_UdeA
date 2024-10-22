@@ -2,26 +2,28 @@
 import NavBar from "../components/NavBar.astro";
 
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
+  currentPath: string;
 }
 
-const { title } = Astro.props;
-const { description } = Astro.props;
+const { title, description, currentPath } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<nav><NavBar/></nav>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <NavBar currentPath={currentPath} />
+    </header>
+    <slot />
+  </body>
 </html>

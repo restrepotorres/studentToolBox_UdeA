@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const currentPath = Astro.url.pathname;
 ---
 
-<Layout title="Student ToolBox UdeA" description='Página principal'>
+<Layout title="Student ToolBox UdeA" description='Página principal' currentPath={currentPath}>
 	<main>
 		
 	</main>
