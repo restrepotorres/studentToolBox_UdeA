@@ -9,6 +9,7 @@ interface Subject {
   corequisites: string[];
   credits: number;
   level: number;
+  version: number;
   area: string;
   state: boolean;
 }
@@ -30,11 +31,13 @@ const RFNode: React.FC<SubjectProps> = (
           <Handle
             type="target"
             position={Position.Left}
-            style={{ background: "#555" }}
+            style={{ background: "#555"}}
             isConnectable={true}
+            
           />
         </>
       )}
+
 
       {/* Node content */}
       <div onClick={() => alert(`holi esta materia se llama ${subject.name}`)}>

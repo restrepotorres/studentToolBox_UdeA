@@ -7,6 +7,7 @@ interface Subject {
   corequisites: string[];
   credits: number;
   level: number;
+  version: number;
   area: string;
   state: boolean;
 }
@@ -18,7 +19,8 @@ let banners: Subject[] = [
     prerequisites: [],
     corequisites: [],
     credits: 0,
-    level: 2,
+    level: 1,
+    version: 0,
     area: "info",
     state: true,
   },
@@ -29,6 +31,18 @@ let banners: Subject[] = [
     corequisites: [],
     credits: 0,
     level: 2,
+    version: 0,
+    area: "info",
+    state: true,
+  },
+  {
+    id: "1",
+    name: "Nivel 3 ",
+    prerequisites: [],
+    corequisites: [],
+    credits: 0,
+    level: 3,
+    version: 0,
     area: "info",
     state: true,
   }
@@ -46,6 +60,12 @@ export const initialNodes = [
     id: "n2banner",
     position: { x: 300, y: 100 },
     data: { label: <RFNode subject={banners[1]} noHandles={true} /> },  // No handles
+    // No need for sourcePosition or targetPosition
+  },
+  {
+    id: "n3banner",
+    position: { x: 600, y: 100 },
+    data: { label: <RFNode subject={banners[2]} noHandles={true} /> },  // No handles
     // No need for sourcePosition or targetPosition
   },
  

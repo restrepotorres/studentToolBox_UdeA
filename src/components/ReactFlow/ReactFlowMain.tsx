@@ -18,6 +18,7 @@ interface Subject {
   corequisites: string[];
   credits: number;
   level: number;
+  version: number;
   area: string;
   state: boolean;
 }
@@ -49,7 +50,7 @@ const ReactFlowMain: React.FC = () => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x: subject.level * 85, y: 300 },
+          position: { x: (subject.level - 1) * 300, y: subject.version * 200 },
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
