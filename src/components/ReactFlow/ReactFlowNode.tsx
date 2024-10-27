@@ -1,6 +1,8 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import ReactDOM from "react-dom";
 
 interface Subject {
   id: string;
@@ -14,14 +16,16 @@ interface Subject {
 }
 
 interface SubjectProps {
-  subject: Subject; 
+  subject: Subject;
   noHandles: boolean;
 }
 
-const RFNode: React.FC<SubjectProps> = (
-  { subject },
-  noHandles: boolean
-) => {
+const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="rf-node">
       {/* Conditionally render handles if noHandles is false or undefined */}
@@ -37,7 +41,7 @@ const RFNode: React.FC<SubjectProps> = (
       )}
 
       {/* Node content */}
-      <div onClick={() => alert(`holi esta materia se llama ${subject.name}`)}>
+      <div onClick={toggleDrawer}>
         <h1>{subject.name}</h1>
         {subject.credits > 0 && <div>creditos: {subject.credits}</div>}
       </div>
@@ -51,6 +55,18 @@ const RFNode: React.FC<SubjectProps> = (
             isConnectable={true}
           />
         </>
+      )}
+
+      {ReactDOM.createPortal(
+        isOpen && <Drawer
+          open={isOpen}
+          onClose={toggleDrawer}
+          direction="right"
+          className="bla bla bla"
+        >
+          <div>{subject.name}</div>
+        </Drawer>,
+        document.body
       )}
     </div>
   );
