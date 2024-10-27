@@ -1,0 +1,40 @@
+[
+  {
+    "id": "idlogica2",
+    "name": "logica 2 ",
+    "prerequisites": ["idlogica1","requisito 2 "],
+    "corequisites": ["string"],
+    "credits": 0,
+    "level": 0,
+    "summary": "string",
+    "hoursWeek": 0,
+    "usefulResources": {
+      "additionalProp1": ["string"],
+      "additionalProp2": ["string"],
+      "additionalProp3": ["string"] 
+    },
+    "tips": ["string"],
+    "area": "string",
+    "electiva": true,
+    "state": true
+  },
+  {
+    "id": "string",
+    "name": "string",
+    "prerequisites": ["string"],
+    "corequisites": ["string"],
+    "credits": 0,
+    "level": 0,
+    "summary": "string",
+    "hoursWeek": 0,
+    "usefulResources": {
+      "additionalProp1": ["string"],
+      "additionalProp2": ["string"],
+      "additionalProp3": ["string"]
+    },
+    "tips": ["string"],
+    "area": "string",
+    "electiva": true,
+    "state": true
+  }
+]
