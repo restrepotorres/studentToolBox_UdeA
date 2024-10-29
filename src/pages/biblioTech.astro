@@ -1,7 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/Layout.astro";
+const currentPath = Astro.url.pathname;
 ---
 
-<Layout title="Banco de Recursos" description="Biblioteca de tecnologías">
-    
-</Layout>
+<Layout
+  title="Banco de Recursos"
+  description="Biblioteca de tecnologías"
+  currentPath={currentPath}
+/>

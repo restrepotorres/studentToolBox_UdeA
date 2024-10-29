@@ -1,8 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LoginCard from "../components/LoginCard";
+const currentPath = Astro.url.pathname;
 ---
 
-<Layout title="Pensum interactivo" description="Pensum interactivo">
-    <LoginCard  client:load></LoginCard>
+<Layout
+  title="Pensum interactivo"
+  description="Pensum interactivo"
+  currentPath={currentPath}
+>
+  <LoginCard client:load />
 </Layout>
