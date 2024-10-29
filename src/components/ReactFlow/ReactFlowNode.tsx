@@ -1,20 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Handle, Position } from "reactflow";
-import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ReactDOM from "react-dom";
-
-interface Subject {
-  id: string;
-  name: string;
-  prerequisites: string[];
-  corequisites: string[];
-  credits: number;
-  level: number;
-  version: number;
-  area: string;
-  state: boolean;
-}
+import Drower from "../Drower";
+import axios from "axios";
+import type { Subject, SubjectFull } from "../../interfaces/";
 
 interface SubjectProps {
   subject: Subject;
@@ -23,9 +13,21 @@ interface SubjectProps {
 
 const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  const [fullSubject, setfullSubject] = useState<SubjectFull | undefined>();
+
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      try {
+        const response = await axios.get<SubjectFull>(
+          `https://toolbox-backend.onrender.com/toolbox/api/v1/subjectfull/${subject.id}`
+        );
+        setfullSubject(response.data);
+      } catch (error) {
+        console.error("Error fetching subjects:", error);
+      }
+    };
+    if (isOpen) fetchSubjects();
+  }, [isOpen]);
 
   return (
     <div className="rf-node">
@@ -35,16 +37,19 @@ const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
           <Handle
             type="target"
             position={Position.Left}
-            style={{ background: "#555"}}
+            style={{ background: "#555" }}
             isConnectable={true}
-            
           />
         </>
       )}
 
-
       {/* Node content */}
-      <div onClick={toggleDrawer}>
+      <div
+        onClick={() => {
+          setIsOpen(true);
+          console.log(fullSubject);
+        }}
+      >
         <h1>{subject.name}</h1>
         {subject.credits > 0 && <div>creditos: {subject.credits}</div>}
       </div>
@@ -61,14 +66,9 @@ const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
       )}
 
       {ReactDOM.createPortal(
-        isOpen && <Drawer
-          open={isOpen}
-          onClose={toggleDrawer}
-          direction="right"
-          className="bla bla bla"
-        >
-          <div>{subject.name}</div>
-        </Drawer>,
+        isOpen && (
+          <Drower subjectFull={fullSubject} open={isOpen} setOpen={setIsOpen} />
+        ),
         document.body
       )}
     </div>
