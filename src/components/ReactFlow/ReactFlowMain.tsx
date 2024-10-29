@@ -11,6 +11,7 @@ import { initialNodes } from "./nodes";
 import axios from "axios";
 import RFNode from "./ReactFlowNode";
 
+
 interface Subject {
   id: string;
   name: string;
@@ -18,15 +19,18 @@ interface Subject {
   corequisites: string[];
   credits: number;
   level: number;
+  version: number;
   area: string;
   state: boolean;
 }
 
 const ReactFlowMain: React.FC = () => {
+
+
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [subjects, setSubjects] = useState<Subject[]>([]);
-
+  
   //el siguiente useEffect obtiene todas las materias del api
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -49,7 +53,7 @@ const ReactFlowMain: React.FC = () => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x: subject.level * 85, y: 300 },
+          position: { x: (subject.level - 1) * 300, y: subject.version * 200 },
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
@@ -84,15 +88,18 @@ const ReactFlowMain: React.FC = () => {
   }, [subjects]);
 
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-    >
-      <Controls />
-      <Background gap={12} size={1} />
-    </ReactFlow>
+    <>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+      >
+        <Controls />
+        <Background gap={12} size={1} />
+      </ReactFlow>
+
+    </>
   );
 };
 

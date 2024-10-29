@@ -6,21 +6,60 @@ const links = [
   { name: "Sitios de interés", href: "/links" },
   { name: "Iniciar sesión", href: "/login" },
 ];
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props as Props;
 ---
 
 <nav class="bg-green-600 p-4">
   <div class="container mx-auto flex justify-between items-center">
     <div class="text-white text-lg font-bold">Student ToolBox UdeA</div>
-    <ul class="flex space-x-4">
+    
+    <!-- Mobile Menu Button -->
+    <button class="block lg:hidden text-white" id="menu-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+
+    <!-- Links -->
+    <ul id="menu" class="hidden lg:flex space-x-4">
       {links.map(link => (
         <li>
-            <a href = {link.href} class = "text-gray-300 hover:text-white">
-                <button type="button" class="bg-green-500 p-2">
-                {link.name}
-                </button>
-            </a>
+          <a href={link.href} 
+             class={`px-3 py-2 rounded-md text-gray-300 hover:text-black ${currentPath === link.href ? 'bg-white text-green-600' : ''}`}>
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Responsive Menu -->
+  <div class="lg:hidden hidden" id="responsive-menu">
+    <ul class="space-y-2">
+      {links.map(link => (
+        <li>
+          <a href={link.href} 
+             class={`block px-3 py-2 rounded-md text-gray-300 hover:text-white ${currentPath === link.href ? 'bg-white text-green-600' : ''}`}>
+            {link.name}
+          </a>
         </li>
       ))}
     </ul>
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle') as HTMLElement;
+    const responsiveMenu = document.getElementById('responsive-menu') as HTMLElement;
+
+    menuToggle.addEventListener('click', () => {
+      responsiveMenu.classList.toggle('hidden');
+    });
+  });
+</script>

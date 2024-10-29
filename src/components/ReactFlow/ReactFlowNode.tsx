@@ -1,27 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Handle, Position } from "reactflow";
-
-
-interface Subject {
-  id: string;
-  name: string;
-  prerequisites: string[];
-  corequisites: string[];
-  credits: number;
-  level: number;
-  area: string;
-  state: boolean;
-}
+import "react-modern-drawer/dist/index.css";
+import ReactDOM from "react-dom";
+import Drower from "../Drower";
+import axios from "axios";
+import type { Subject, SubjectFull } from "../../interfaces/";
 
 interface SubjectProps {
-  subject: Subject; 
+  subject: Subject;
   noHandles: boolean;
 }
 
-const RFNode: React.FC<SubjectProps> = (
-  { subject },
-  noHandles: boolean
-) => {
+const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [fullSubject, setfullSubject] = useState<SubjectFull | undefined>();
+
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      try {
+        const response = await axios.get<SubjectFull>(
+          `https://toolbox-backend.onrender.com/toolbox/api/v1/subjectfull/${subject.id}`
+        );
+        setfullSubject(response.data);
+      } catch (error) {
+        console.error("Error fetching subjects:", error);
+      }
+    };
+    if (isOpen) fetchSubjects();
+  }, [isOpen]);
+
   return (
     <div className="rf-node">
       {/* Conditionally render handles if noHandles is false or undefined */}
@@ -37,7 +44,12 @@ const RFNode: React.FC<SubjectProps> = (
       )}
 
       {/* Node content */}
-      <div onClick={() => alert(`holi esta materia se llama ${subject.name}`)}>
+      <div
+        onClick={() => {
+          setIsOpen(true);
+          console.log(fullSubject);
+        }}
+      >
         <h1>{subject.name}</h1>
         {subject.credits > 0 && <div>creditos: {subject.credits}</div>}
       </div>
@@ -51,6 +63,13 @@ const RFNode: React.FC<SubjectProps> = (
             isConnectable={true}
           />
         </>
+      )}
+
+      {ReactDOM.createPortal(
+        isOpen && (
+          <Drower subjectFull={fullSubject} open={isOpen} setOpen={setIsOpen} />
+        ),
+        document.body
       )}
     </div>
   );

@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro"
+
+const currentPath = Astro.url.pathname;
 ---
 
-<Layout title="About" description="Sobre nosotros...">
+<Layout title="About" description="Sobre nosotros..." currentPath={currentPath}>
     
 </Layout>

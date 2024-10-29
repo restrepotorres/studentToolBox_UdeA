@@ -2,20 +2,23 @@
 import Layout from "../layouts/Layout.astro"
 import InfoCard from "../components/InfoCard.tsx"
 
+const currentPath = Astro.url.pathname;
 const cards = [
-  { text: "UdeA", backText: "Página principal de la UdeA", link: "https://www.udea.edu.co/" },
-  { text: "S2", backText: "More info about S2", link: "/page2" },
-  { text: "S3", backText: "More info about S3", link: "/page3" },
-  { text: "S4", backText: "More info about S4", link: "/page4" },
-  { text: "S5", backText: "More info about S5", link: "/page5" },
+  { text: "UdeA", backText: "Página oficial de la Universidad de Antioquia", link: "https://www.udea.edu.co/" },
+  { text: "Ude@", backText: "More info about S2", link: "/page2" },
+  { text: "Ingenia", backText: "More info about S3", link: "/page3" },
+  { text: "IPISIS", backText: "More info about S4", link: "/page4" },
+  { text: "PAYSA", backText: "More info about S5", link: "/page5" },
 ];
 ---
 
-<Layout title="Sitios Externos" description="Useful links">
-    <h1 class="text-center p-2 font-bold text-green-600">Sitios externos</h1>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
-        {cards.map((card) => (
-            <InfoCard text={card.text} backText={card.backText} link={card.link} client:load/>
-        ))}
-    </div>
+<Layout title="Sitios Externos" description="Useful links" currentPath={currentPath}>
+    <main>
+        <h1 class="text-center p-2 font-bold text-green-600">Sitios externos</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+            {cards.map((card) => (
+                <InfoCard text={card.text} backText={card.backText} link={card.link} client:load/>
+            ))}
+        </div>
+    </main>
 </Layout>
