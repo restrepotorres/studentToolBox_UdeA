@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro"
+import AdminView from "../components/Admin/AdminView";
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title="Administrador" description="Sobre nosotros..." currentPath={currentPath}>
+    <AdminView></AdminView>
+</Layout>
