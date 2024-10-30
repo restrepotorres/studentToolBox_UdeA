@@ -1,7 +1,7 @@
 import React from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import type { SubjectFullProps } from "../interfaces/";
+import type { SubjectFullProps } from "../interfaces";
 
 const Drower: React.FC<SubjectFullProps> = ({ subjectFull, open, setOpen }) => {
   const toggleDrawer = () => {
