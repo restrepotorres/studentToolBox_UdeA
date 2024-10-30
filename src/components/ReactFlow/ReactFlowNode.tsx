@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Handle, Position } from "reactflow";
 import "react-modern-drawer/dist/index.css";
 import ReactDOM from "react-dom";
-import Drower from "../Drower";
+import Drower from "../Drawer";
 import axios from "axios";
 import type { Subject, SubjectFull } from "../../interfaces/";
 
