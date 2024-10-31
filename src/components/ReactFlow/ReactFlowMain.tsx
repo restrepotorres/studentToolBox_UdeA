@@ -53,7 +53,7 @@ const ReactFlowMain: React.FC = () => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x: (subject.level - 1) * 300, y: subject.version * 200 },
+          position: { x: (subject.level - 1) * 300, y: subject.version * 80 },
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
@@ -62,7 +62,7 @@ const ReactFlowMain: React.FC = () => {
         })
       );
 
-      subject.corequisites.forEach((corequisite) => {
+/*       subject.corequisites.forEach((corequisite) => {
         setEdges((edgs) =>
           edgs.concat({
             id: `e${subject.id}_${corequisite}`,
@@ -71,15 +71,15 @@ const ReactFlowMain: React.FC = () => {
             type: "smoothstep",
           })
         );
-      });
+      }); */
 
       subject.prerequisites.forEach((prerequisite) => {
         setEdges((edgs) =>
           edgs.concat({
-            id: `e${subject.id}_${prerequisite}`,
-            source: subject.id,
-            target: prerequisite,
-            type: "smoothstep",
+            id: `e${prerequisite}_${subject.id}`,
+            source: prerequisite,
+            target: subject.id,
+            type: "bezier",
           })
         );
       });
@@ -94,9 +94,13 @@ const ReactFlowMain: React.FC = () => {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        minZoom={0.2}
+        maxZoom={2.5}
+        defaultViewport={ {x: 50, y: 50, zoom: 0.5} }
+        elevateEdgesOnSelect={true}
       >
         <Controls />
-        <Background gap={12} size={1} />
+        <Background gap={28} size={0.5} />
       </ReactFlow>
 
     </>
