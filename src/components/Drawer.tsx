@@ -14,10 +14,15 @@ const Drower: React.FC<SubjectFullProps> = ({ subjectFull, open, setOpen }) => {
       onClose={toggleDrawer}
       direction="right"
       className={subjectFull?.area}
+      size={"30vw"}
     >
-      <h1>{subjectFull?.name}</h1>
+      {/* <h1>{subjectFull?.name}</h1>
       <h1>Resumen de la materia</h1>
-      <h2>{subjectFull?.summary}</h2>
+      <h2>{subjectFull?.summary}</h2> */}
+
+      <div className="bg-[#4CAF50] p-4 justify-center text-center">
+        <h1>{subjectFull?.name}</h1>
+      </div>
     </Drawer>
   );
 };
