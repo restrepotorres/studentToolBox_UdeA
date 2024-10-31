@@ -9,5 +9,11 @@ const currentPath = Astro.url.pathname;
   description="Pensum interactivo"
   currentPath={currentPath}
 >
-  <LoginCard client:load />
+  <div class="flex justify-center items-center min-h-[90vh]">
+    <div class="bg-[#4CAF50] rounded-md flex justify-center items-center w-80 h-80 p-4">
+      <div class="bg-white p-2 rounded shadow-lg text-center m-3 w-56 h-56">
+        <LoginCard client:load />
+      </div>
+    </div>
+  </div>
 </Layout>
