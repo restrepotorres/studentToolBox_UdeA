@@ -1,12 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import RFMain from '../components/ReactFlow/ReactFlowMain'
+import ExtraSubjectsBox from '../components/ExtraSubjectsBox';
 
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Pensum interactivo" description="Pensum interactivo" currentPath={currentPath}>
-    <div class="flex mx-5 my-8 border-4 border-solid border-green-500 w-[75vw] h-[70vh]">
+    <div class="flex">
+    <div class=" mx-5 my-8 border-4 border-solid border-green-500 w-[75vw] h-[70vh]">
         <RFMain client:load/>
+    </div>
+    <div class="mx-5 my-8 w-[25vw] h-[70vh]">
+        <ExtraSubjectsBox />
+    </div>
     </div>
 </Layout>
