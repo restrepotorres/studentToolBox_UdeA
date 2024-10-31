@@ -51,7 +51,10 @@ const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
         }}
       >
         <h1>{subject.name}</h1>
-        {subject.credits > 0 && <div>creditos: {subject.credits}</div>}
+        <div className="flex justify-between items-center">
+          {subject.credits > 0 && <div>{subject.id}</div>}
+          {subject.credits > 0 && <div>| {subject.credits}</div>}
+        </div>
       </div>
 
       {!noHandles && (

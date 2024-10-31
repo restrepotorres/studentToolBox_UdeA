@@ -36,6 +36,7 @@ const ReactFlowMain: React.FC = () => {
     MD: { background: "orange", border: "2px solid black" },
     AP: { background: "yellow", border: "2px solid black" },
     IB: { background: "lightgreen", border: "2px solid black" },
+    IS: { background: "lightgreen", border: "2px solid red" },
   };
 
   // Fetch subjects from API
