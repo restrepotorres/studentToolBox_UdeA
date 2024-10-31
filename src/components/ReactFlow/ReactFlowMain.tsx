@@ -11,7 +11,6 @@ import { initialNodes } from "./nodes";
 import axios from "axios";
 import RFNode from "./ReactFlowNode";
 
-
 interface Subject {
   id: string;
   name: string;
@@ -25,13 +24,21 @@ interface Subject {
 }
 
 const ReactFlowMain: React.FC = () => {
-
-
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [subjects, setSubjects] = useState<Subject[]>([]);
-  
-  //el siguiente useEffect obtiene todas las materias del api
+
+  // Define styles based on the area property
+  const areaStyles: { [key: string]: React.CSSProperties } = {
+    CEN: { background: "lightgreen", border: "2px solid yellow" },
+    ESP: { background: "blue", border: "2px solid red" },
+    SA: { background: "white", border: "2px solid black" },
+    MD: { background: "orange", border: "2px solid black" },
+    AP: { background: "yellow", border: "2px solid black" },
+    IB: { background: "lightgreen", border: "2px solid black" },
+  };
+
+  // Fetch subjects from API
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
@@ -47,7 +54,7 @@ const ReactFlowMain: React.FC = () => {
     fetchSubjects();
   }, []);
 
-  //en este useEffect se agregan las materias traidas del api como nodos para ser renderizadas
+  // Add subjects from API as nodes
   useEffect(() => {
     subjects.forEach((subject) => {
       setNodes((nds) =>
@@ -57,21 +64,11 @@ const ReactFlowMain: React.FC = () => {
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
+          style: areaStyles[subject.area] || {}, // Use areaStyles map
           sourcePosition: Position.Right,
           targetPosition: Position.Left,
         })
       );
-
-/*       subject.corequisites.forEach((corequisite) => {
-        setEdges((edgs) =>
-          edgs.concat({
-            id: `e${subject.id}_${corequisite}`,
-            source: subject.id,
-            target: corequisite,
-            type: "smoothstep",
-          })
-        );
-      }); */
 
       subject.prerequisites.forEach((prerequisite) => {
         setEdges((edgs) =>
@@ -83,7 +80,6 @@ const ReactFlowMain: React.FC = () => {
           })
         );
       });
-      //Edges id notation --> e(códigoMateriaSource)_(códigoMateriaTarget)
     });
   }, [subjects]);
 
@@ -96,13 +92,12 @@ const ReactFlowMain: React.FC = () => {
         onEdgesChange={onEdgesChange}
         minZoom={0.2}
         maxZoom={2.5}
-        defaultViewport={ {x: 50, y: 50, zoom: 0.5} }
+        defaultViewport={{ x: 50, y: 50, zoom: 0.5 }}
         elevateEdgesOnSelect={true}
       >
         <Controls />
-        <Background gap={28} size={0.5} />
+        <Background gap={12} size={1} />
       </ReactFlow>
-
     </>
   );
 };
