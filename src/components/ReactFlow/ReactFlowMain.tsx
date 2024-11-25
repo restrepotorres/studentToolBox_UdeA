@@ -30,12 +30,18 @@ const ReactFlowMain: React.FC = () => {
 
   // Define styles based on the area property
   const areaStyles: { [key: string]: React.CSSProperties } = {
-    CEN: { background: "lightgreen", border: "2px solid yellow" },
-    ESP: { background: "blue", border: "2px solid red" },
-    SA: { background: "white", border: "2px solid black" },
-    MD: { background: "orange", border: "2px solid black" },
-    AP: { background: "yellow", border: "2px solid black" },
-    IB: { background: "lightgreen", border: "2px solid black" },
+    CEN: { background: "#85ed9d", border: "3px solid #cdd62d", borderRadius: "8px"  },
+    ESP: { background: "#2e3282", border: "3px solid red", color: "white", borderRadius: "8px"  },
+    SA: { background: "white", border: "3px solid black", borderRadius: "8px"  },
+    MD: { background: "#e3ae98", border: "3px solid black", borderRadius: "8px"  },
+    AP: { background: "#dbbe3b", border: "3px solid black", borderRadius: "8px"  },
+    IB: { background: "lightgreen", border: "3px solid black", borderRadius: "8px"  },
+    IS: { background: "#c4e075", border: "3px solid red", borderRadius: "8px"  },
+    AI: { background: "#f2e746", border: "3px solid red", borderRadius: "8px"  },
+    BAN: { background: "#b0b0b5", border: "3px solid black", borderRadius: "25px" },
+    CIC: { background: "#4e75de", border: "3px solid black", borderRadius: "8px"  },
+    PIS: { background: "white", border: "3px solid black", borderRadius: "8px"  },
+    CD: { background: "#ed6639", border: "3px solid yellow", borderRadius: "8px", color: "white"  },
   };
 
   // Fetch subjects from API

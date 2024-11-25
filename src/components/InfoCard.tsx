@@ -24,7 +24,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ text, backText, link }) => {
         <p className="info-description">{backText}</p>
         <div className="info-button-container">
           <a href={link} className="info-button" target="_blank">
-            Go to page
+            Ir a la Página
           </a>
         </div>
       </div>

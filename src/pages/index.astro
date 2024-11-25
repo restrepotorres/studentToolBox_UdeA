@@ -1,11 +1,68 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { useState } from 'react';
 
 const currentPath = Astro.url.pathname;
+const items = [
+  { bcolor: "green", title: "Debes matricular mínimo 8 créditos en tu semestre académico", description: "Recuerda que existe un número mínimo de créditos que debes mátricular por semestre, planea acorde y con tiempo cuantos créditos vas a matricular y en caso de que no te sea posible recuerda hacer la petición de mátricula con menos de 8 créditos a través del SSOFI (Artículo 67)" },
+  { bcolor: "orange", title: "¿Qué debo tener en cuenta si necesito cancelar cursos o el semestre?", description: "Puedes realizar la cancelación de cursos o la cancelación del semestre sin necesidad de aportar argumentos en tu solicitud, hasta el 40% evaluado o si al momento de solicitar la cancelación tienes notas aprobatorias. \n Una vez superado el 40% evaluado o en caso de no tener nota aprobatoria deberás argumentar a la luz de alguna de las siguientes causales: Fuerza mayor, Calamidad doméstica ó Enfermedad certificada (Artículo 74)" },
+  { bcolor: "blue", title: "¿Cuántas veces puedo cancelar la misma materia?", description: "Lista de los requisitos necesarios para utilizar la herramienta." },
+  { bcolor: "lime", title: "¿Cuántas veces puedo perder un mismo curso?", description: "Pasos detallados para instalar y configurar la herramienta." },
+  { bcolor: "teal", title: "La Asistencia a clase es obligatoria", description: "Guía para configurar las opciones principales." },
+  { bcolor: "purple", title: "¿No pudiste presentar una evaluación parcial o final?", description: "Instrucciones para comenzar a utilizar la herramienta." },
+  { bcolor: "red", title: "Situaciones académicas de riesgo", description: "Consejos y trucos para usuarios avanzados." },
+  { bcolor: "cyan", title: "En evaluaciones y notas definitivas de cursos", description: "Información sobre cómo obtener soporte y ayuda técnica." }
+];
 ---
 
-<Layout title="Student ToolBox UdeA" description='Página principal' currentPath={currentPath}>
+<Layout title="Student ToolBox UdeA" description="Página principal" currentPath={currentPath}>
 	<main>
-		
+		<div class="grid grid-cols-[3fr_2fr] gap-3 w-[95vw] h-[85vh] m-auto mt-9 p-4">
+			<!-- Columna más ancha -->
+			<div class="h-full border-4 border-green-700 flex flex-col justify-between p-5 rounded-lg">
+				<!-- Título -->
+				<h2 class="text-center text-2xl font-bold mb-2 mt-4">Datos Básicos para sobrevivir en la U</h2>
+				<br>
+				<!-- Desplegables -->
+				<div class="flex-grow overflow-y-auto space-y-2">
+					{items.map((item) => (
+						<details style={{ borderColor: item.bcolor }} class="border-2 rounded p-2">
+							<summary style={{ color: item.bcolor }} class="cursor-pointer font-medium">{item.title}</summary>
+							<p class="mt-2 text-gray-700">{item.description}</p>
+						</details>
+					))}
+				</div>
+
+				<!-- Footer -->
+				<footer class="text-center mt-4 border-t border-gray-300 pt-2 text-sm text-gray-600">
+					Acuerdo superior 1 de 1981 - Reglamento estudiantil de pregrado UdeA
+				</footer>
+			</div>
+
+			<!-- Columna con dos filas -->
+			<div class="grid grid-rows-[4fr_2fr] gap-3">
+				<div>
+					<div class="bg-gradient-to-b from-green-900 to-green-700 p-6 rounded-lg shadow-md text-white space-y-4">
+					<h3 class="text-lg font-bold uppercase">Calendario académico semestre 2024-2</h3>
+					
+					<div class="space-y-2">
+						<p><span class="font-bold text-yellow-400">Oferta:</span> 23 de julio de 2024</p>
+						<p><span class="font-bold text-green-200">Matrícula presencial y virtual:</span> 24 de julio de 2024</p>
+						<p><span class="font-bold text-green-200">Matrícula regiones:</span> 25 de julio de 2024</p>
+						<p><span class="font-bold text-green-200">Ajustes presencial y virtual:</span> del 26 de julio al 2 de agosto de 2024</p>
+						<p><span class="font-bold text-green-200">Ajustes regiones:</span> del 29 de julio al 2 de agosto de 2024</p>
+						<p><span class="font-bold text-green-300">Inicio de clases:</span> 5 de agosto de 2024</p>
+						<p><span class="font-bold text-yellow-400">Límite evaluación del 40%:</span> 28 de septiembre de 2024</p>
+						<p><span class="font-bold text-green-300">Terminación de clases:</span> 23 de noviembre de 2024</p>
+						<p><span class="font-bold text-yellow-400">Exámenes finales:</span> del 25 al 30 de noviembre de 2024</p> 
+						<p><span class="font-bold text-green-300">Habilitación y validaciones:</span> 2 al 7 de diciembre de 2024</p> 
+						<p><span class="font-bold text-yellow-400">Terminación oficial:</span> 10 de diciembre de 2024</p> 
+					</div>
+				
+				</div>
+			</div>
+				<div></div>
+			</div>
+		</div>
 	</main>
 </Layout>
