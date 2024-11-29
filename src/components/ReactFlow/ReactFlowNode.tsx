@@ -30,7 +30,7 @@ const RFNode: React.FC<SubjectProps> = ({ subject }, noHandles: boolean) => {
   }, [isOpen]);
 
   return (
-    <div className="rf-node">
+    <div className="rf-node nodrag" >
       {/* Conditionally render handles if noHandles is false or undefined */}
       {!noHandles && (
         <>
