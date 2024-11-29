@@ -20,7 +20,11 @@ export interface SubjectFull {
   level: number;
   summary: string;
   hoursWeek: number;
-  usefulResource: recursos;
+  usefulResources: {
+    libro: string[] | null;
+    video: string[] | null;
+    pdf: string[] | null;
+  };
   tips: string[];
   version: number;
   area: string;
