@@ -67,7 +67,7 @@ const ReactFlowMain: React.FC = () => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x: (subject.level - 1) * 300, y: subject.version * 80 },
+          position: { x: (subject.level - 1) * 300, y: subject.version * 90 },
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
