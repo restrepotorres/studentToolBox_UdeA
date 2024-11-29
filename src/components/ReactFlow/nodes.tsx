@@ -123,7 +123,7 @@ export const initialNodes = [
   {
     id: "n1banner",
     position: { x: 0, y: 0 },
-    data: { label: <RFNode subject={banners[0]} noHandles={true} /> },  // No handles
+    data: { label: <RFNode  subject={banners[0]} noHandles={true} /> },  // No handles
     // No need for sourcePosition or targetPosition
   },
   {
