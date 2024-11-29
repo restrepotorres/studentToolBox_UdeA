@@ -42,7 +42,9 @@ const ReactFlowMain: React.FC = () => {
     BAN: { background: "#b0b0b5", border: "3px solid black", borderRadius: "25px" },
     CIC: { background: "#4e75de", border: "3px solid black", borderRadius: "8px"  },
     PIS: { background: "white", border: "3px solid black", borderRadius: "8px"  },
+    SI: { background: "#6a49a6", border: "3px solid red", borderRadius: "8px"  },
     CD: { background: "#ed6639", border: "3px solid yellow", borderRadius: "8px", color: "white"  },
+    AMSO: { background: "#294528", border: "4px solid yellow", borderRadius: "8px", color: "white"  },
   };
 
   // Fetch subjects from API
@@ -67,7 +69,7 @@ const ReactFlowMain: React.FC = () => {
       setNodes((nds) =>
         nds.concat({
           id: subject.id,
-          position: { x: (subject.level - 1) * 300, y: subject.version * 80 },
+          position: { x: (subject.level - 1) * 300, y: subject.version * 90 },
           data: {
             label: <RFNode subject={subject} noHandles={false} />,
           },
