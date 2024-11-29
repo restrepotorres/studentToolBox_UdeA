@@ -4,6 +4,7 @@ import ReactFlow, {
   Background,
   useNodesState,
   useEdgesState,
+  MiniMap,
   Position,
 } from "reactflow";
 import "reactflow/dist/style.css";
@@ -101,7 +102,7 @@ const ReactFlowMain: React.FC = () => {
         defaultViewport={{ x: 50, y: 50, zoom: 0.5 }}
         elevateEdgesOnSelect={true}
       >
-        <Controls />
+        
         <Background gap={12} size={1} />
       </ReactFlow>
     </>
