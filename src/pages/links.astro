@@ -10,12 +10,16 @@ const cards = [
   { text: "SSOFI", backText: "Sistema de solicitudes de la facultad de ingeniería", link: "https://ssofi.udea.edu.co/ingenieria/" },
   { text: "IPISIS", backText: "Plataforma de inscripción a los proyectos integradores de Ingeniería de sistemas", link: "https://siona.udea.edu.co/" },
   { text: "PAYSA", backText: "Sistema de paz y salvos de la facultad de ingeniería", link: "https://ingenieria.udea.edu.co/paysa/index.jsp" },
+  { text: "Repositorio Institucional", backText: "Repositorio de información de la UdeA", link: "https://bibliotecadigital.udea.edu.co/" },
+  { text: "Catalejo", backText: "Catálogo bibliográfico público del sistema de bibliotecas UdeA", link: "https://catalejo.udea.edu.co/" },
+  { text: "Catálogo UdeA", backText: "Catálogo de Bases de Datos del sistema de bibliotecas UdeA", link: "https://login.udea.lookproxy.com/public/menu.htm" },
+  { text: "SINERGIA", backText: "Sistema de documentación curricular y de autoevaluación", link: "https://sicingenieria.udea.edu.co/" },
 ];
 ---
 
 <Layout title="Sitios Externos" description="Useful links" currentPath={currentPath}>
     <main>
-        <h1 class="text-center p-4 font-bold text-green-600 text-2xl">Sitios externos</h1>
+        <h1 class="text-center p-4 font-bold text-green-600 text-4xl">Sitios externos</h1>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
             {cards.map((card) => (
                 <InfoCard text={card.text} backText={card.backText} link={card.link} client:load/>
